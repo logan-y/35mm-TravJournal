@@ -23,7 +23,7 @@ public class Post {
     private String notes;
 
     //@Column? One to many?
-//    private Long filmId;
+//    private Long filmTypeId;
 
 //    private Long addressId;
 

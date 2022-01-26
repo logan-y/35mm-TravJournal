@@ -13,14 +13,14 @@ public class PostDto {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     private String notes;
-//    private Long filmId;
+//    private Long filmTypeId;
 //    private Long addressId;
 
     public PostDto(Post post) {
         this.id = post.getId();
         this.date = post.getDate();
         this.notes = post.getNotes();
-//        this.filmId = post.getFilmId();
+//        this.filmId = post.getFilmTypeId();
 //        this.addressId = post.getAddressId();
     }
 
