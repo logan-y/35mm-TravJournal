@@ -3,15 +3,13 @@ package com.loganyoung.mmTravJournal.entities;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 
 @Entity
 @Data
-//@Table(name = "")
 public class Post {
     @Id
     @GeneratedValue
@@ -19,12 +17,13 @@ public class Post {
 
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date date;
+    private Date creationDate;
     private String notes;
 
-    //@Column? One to many?
-//    private Long filmTypeId;
+    @ManyToMany(mappedBy = "posts")
+    private Set<FilmType> filmTypes;
 
-//    private Long addressId;
+    @ManyToOne
+    private Address address;
 
 }

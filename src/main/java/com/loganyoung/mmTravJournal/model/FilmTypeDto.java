@@ -10,13 +10,11 @@ public class FilmTypeDto {
     private Long id;
     private String name;
 
-    private Long brand_id;
-    private Long speed_id;
+    private String brand;
+    private Long speed;
 
     public FilmTypeDto(FilmType filmType) {
         this.id = filmType.getId();
         this.name = filmType.getName();
-        this.brand_id = filmType.getBrand_id();
-        this.speed_id = filmType.getSpeed_id();
     }
 }

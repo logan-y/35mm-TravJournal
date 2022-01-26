@@ -29,7 +29,7 @@ public class PostServiceImpl implements PostService{
         Post post = new Post();
 //        post.setAddressId(postDto.getAddressId());
         post.setNotes(postDto.getNotes());
-        post.setDate(postDto.getDate());
+        post.setCreationDate(postDto.getDate());
 //        post.setFilmId(postDto.getFilmId());
         return new PostDto(postRepository.save(post));
     }
@@ -44,7 +44,7 @@ public class PostServiceImpl implements PostService{
         Optional<Post> postOptional = postRepository.findById(postDto.getId());
         if(postOptional.isPresent()){
         Post post = postOptional.get();
-        post.setDate(postDto.getDate());
+        post.setCreationDate(postDto.getDate());
         post.setNotes(postDto.getNotes());
 //        post.setFilmId(postDto.getFilmId());
 //        post.setAddressId(postDto.getAddressId());

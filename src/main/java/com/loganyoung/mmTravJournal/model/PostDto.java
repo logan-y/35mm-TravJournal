@@ -18,7 +18,7 @@ public class PostDto {
 
     public PostDto(Post post) {
         this.id = post.getId();
-        this.date = post.getDate();
+        this.date = post.getCreationDate();
         this.notes = post.getNotes();
 //        this.filmId = post.getFilmTypeId();
 //        this.addressId = post.getAddressId();
