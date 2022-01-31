@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.List;
-import java.util.Set;
+
 
 @Entity
 @Data
@@ -19,6 +19,4 @@ public class Address {
     private String state;
     @OneToMany(mappedBy = "address")
     private List<Post> posts;
-
-    //
 }

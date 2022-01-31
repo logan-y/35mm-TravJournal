@@ -11,12 +11,31 @@
     <title>All Blog Posts</title>
 </head>
 <body>
-<h1>All Blog Posts</h1>
 
+<h1>Add New Post</h1>
+<form action="#" th:action="@{/posts}" th:object="${newPost}" method="post">
+    <p>Notes: <input type="text" th:field="*{notes}"></p>
+    <p>Date: <input type="date" th:field="*{date}"></p>
+    <p>Address:
+        <select th:field="${newPost.address.id}">
+            <option value="1">Austin, Texas</option>
+            <option value="2">Lafayette, Louisiana</option>
+            <option value="3">Detroit, Michigan</option>
+            <option value="4">Phoenix, Arizona</option>
+            <option value="5">Seattle, Washington</option>
+        </select>
+    </p>
+    <p>
+        <button class="btn btn-info" type="submit" value="Submit" th:text="Submit"></button>
+    </p>
+</form>
+<h1>All Blog Posts</h1>
 <div>
     <div th:each="post : ${posts}" class="card" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title" th:text="${post.notes}"></h5>
+            <h5 class="card-title" th:text="${post.address.city}"></h5>
+            <h5 class="card-title" th:text="${post.address.state}"></h5>
             <h5 class="card-title" th:text="${#dates.format(post.date, 'MM-dd-yyyy')}"></h5>
             <a th:href="@{'/posts/{id}/delete'(id=${post.id})}">
                 <p>
@@ -34,14 +53,6 @@
     </div>
 </div>
 
-<h1>Add New Post</h1>
-<form action="#" th:action="@{/posts}" th:object="${newPost}" method="post">
-    <p>Notes: <input type="text" th:field="*{notes}"></p>
-    <p>Date: <input type="date" th:field="*{date}"></p>
-    <p>
-        <button class="btn btn-info" type="submit" value="Submit" th:text="Submit"></button>
-    </p>
-</form>
 
 
 <!--Bootstrap required scripts-->

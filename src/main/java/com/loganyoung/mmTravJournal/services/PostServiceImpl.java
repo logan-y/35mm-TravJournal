@@ -1,13 +1,14 @@
 package com.loganyoung.mmTravJournal.services;
 
+import com.loganyoung.mmTravJournal.entities.Address;
 import com.loganyoung.mmTravJournal.entities.Post;
 import com.loganyoung.mmTravJournal.model.PostDto;
+import com.loganyoung.mmTravJournal.repositories.AddressRepository;
 import com.loganyoung.mmTravJournal.repositories.PostRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 public class PostServiceImpl implements PostService{
 
     private final PostRepository postRepository;
+    private final AddressRepository addressRepository;
 
     @Override
     public List<PostDto> findAllPosts() {
@@ -27,11 +29,13 @@ public class PostServiceImpl implements PostService{
     @Override
     public PostDto createPost(PostDto postDto) {
         Post post = new Post();
-//        post.setAddressId(postDto.getAddressId());
+        Optional<Address> foundAddress = addressRepository.findById(postDto.getAddress().getId());
         post.setNotes(postDto.getNotes());
         post.setCreationDate(postDto.getDate());
-//        post.setFilmId(postDto.getFilmId());
+        foundAddress.ifPresent(post::setAddress);
+//        System.out.println(foundAddress);
         return new PostDto(postRepository.save(post));
+
     }
 
     @Override
@@ -46,8 +50,6 @@ public class PostServiceImpl implements PostService{
         Post post = postOptional.get();
         post.setCreationDate(postDto.getDate());
         post.setNotes(postDto.getNotes());
-//        post.setFilmId(postDto.getFilmId());
-//        post.setAddressId(postDto.getAddressId());
         return Optional.of(new PostDto(postRepository.save(post)));
         }
         return Optional.empty();

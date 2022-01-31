@@ -1,5 +1,6 @@
 package com.loganyoung.mmTravJournal.model;
 
+import com.loganyoung.mmTravJournal.entities.Address;
 import com.loganyoung.mmTravJournal.entities.Post;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,15 +14,19 @@ public class PostDto {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     private String notes;
-//    private Long filmTypeId;
-//    private Long addressId;
+    private Address address;
 
     public PostDto(Post post) {
         this.id = post.getId();
         this.date = post.getCreationDate();
         this.notes = post.getNotes();
-//        this.filmId = post.getFilmTypeId();
-//        this.addressId = post.getAddressId();
+        this.address = post.getAddress(); //to display associated address?
     }
 
+    public PostDto(Long id, Date date, String notes, Long addressId, Address address) {
+        this.id = id;
+        this.date = date;
+        this.notes = notes;
+        this.address = address;
+    }
 }

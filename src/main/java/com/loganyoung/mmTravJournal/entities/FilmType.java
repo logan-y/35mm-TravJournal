@@ -1,6 +1,7 @@
 package com.loganyoung.mmTravJournal.entities;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.List;
@@ -24,13 +25,8 @@ public class FilmType {
             joinColumns = {@JoinColumn(name="filmTypeId", referencedColumnName = "id")},
     inverseJoinColumns = {
             @JoinColumn(name = "post_id", referencedColumnName = "id")})
+    @EqualsAndHashCode.Exclude //check out docs
     private List<Post> posts;
-
-
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "Post_FilmTypes", joinColumns = { @JoinColumn(name = "FilmType_Id")},
-//            inverseJoinColumns = { @JoinColumn(name = "Post_Id")})
-
 
 
 }
