@@ -11,6 +11,7 @@ import java.util.Date;
 @Data
 public class PostDto {
     private Long id;
+    private String title;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     private String notes;
@@ -18,15 +19,9 @@ public class PostDto {
 
     public PostDto(Post post) {
         this.id = post.getId();
+        this.title = post.getTitle();
         this.date = post.getCreationDate();
         this.notes = post.getNotes();
-        this.address = post.getAddress(); //to display associated address?
-    }
-
-    public PostDto(Long id, Date date, String notes, Long addressId, Address address) {
-        this.id = id;
-        this.date = date;
-        this.notes = notes;
-        this.address = address;
+        this.address = post.getAddress();
     }
 }

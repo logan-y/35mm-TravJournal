@@ -14,6 +14,7 @@
 
 <h1>Add New Post</h1>
 <form action="#" th:action="@{/posts}" th:object="${newPost}" method="post">
+    <p>Title: <input type="text" th:field="*{title}"></p>
     <p>Notes: <input type="text" th:field="*{notes}"></p>
     <p>Date: <input type="date" th:field="*{date}"></p>
     <p>Address:
@@ -33,22 +34,25 @@
 <div>
     <div th:each="post : ${posts}" class="card" style="width: 18rem;">
         <div class="card-body">
+            <a th:href="@{'/post/' + ${post.getId()}}">
+                <h2 class="card-title" th:text="${post.title}"></h2>
+            </a>
             <h5 class="card-title" th:text="${post.notes}"></h5>
             <h5 class="card-title" th:text="${post.address.city}"></h5>
             <h5 class="card-title" th:text="${post.address.state}"></h5>
             <h5 class="card-title" th:text="${#dates.format(post.date, 'MM-dd-yyyy')}"></h5>
+            <form action="#" th:action="@{'/posts/{id}'(id=${post.id})}" th:object="${updatedPost}" method="post">
+                <p>Notes: <input type="text" th:field="*{notes}"></p>
+                <p>Date: <input type="date" th:field="*{date}"></p>
+                <p>
+                    <button class="btn btn-success" type="submit" value="Submit" th:text="Update"></button>
+                </p>
+            </form>
             <a th:href="@{'/posts/{id}/delete'(id=${post.id})}">
                 <p>
                     <button class="btn btn-danger" type="submit">Delete Post</button>
                 </p>
             </a>
-            <form action="#" th:action="@{'/posts/{id}'(id=${post.id})}" th:object="${updatedPost}" method="post">
-                <p>Notes: <input type="text" th:field="*{notes}"></p>
-                <p>Date: <input type="date" th:field="*{date}"></p>
-                <p>
-                    <button class="btn btn-success" type="submit" value="Submit" th:text="Submit"></button>
-                </p>
-            </form>
         </div>
     </div>
 </div>

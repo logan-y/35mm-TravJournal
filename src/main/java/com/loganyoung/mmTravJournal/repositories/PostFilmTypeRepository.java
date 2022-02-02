@@ -1,4 +1,6 @@
 package com.loganyoung.mmTravJournal.repositories;
 
-public interface PostFilmTypeRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PostFilmTypeRepository  {
 }

@@ -16,6 +16,7 @@ public class Post {
     @GeneratedValue
     private Long id;
 
+    private String title;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date creationDate;

@@ -30,10 +30,10 @@ public class PostServiceImpl implements PostService{
     public PostDto createPost(PostDto postDto) {
         Post post = new Post();
         Optional<Address> foundAddress = addressRepository.findById(postDto.getAddress().getId());
+        post.setTitle(postDto.getTitle());
         post.setNotes(postDto.getNotes());
         post.setCreationDate(postDto.getDate());
         foundAddress.ifPresent(post::setAddress);
-//        System.out.println(foundAddress);
         return new PostDto(postRepository.save(post));
 
     }
@@ -53,5 +53,10 @@ public class PostServiceImpl implements PostService{
         return Optional.of(new PostDto(postRepository.save(post)));
         }
         return Optional.empty();
+    }
+
+    @Override
+    public PostDto getPostById(Long id){
+        return new PostDto(postRepository.getById(id));
     }
 }

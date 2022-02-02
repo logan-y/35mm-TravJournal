@@ -1,5 +1,6 @@
 package com.loganyoung.mmTravJournal.services;
 
+import com.loganyoung.mmTravJournal.entities.Post;
 import com.loganyoung.mmTravJournal.model.PostDto;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public interface PostService {
 
     Optional<PostDto> updatePost(PostDto postDto);
 
-    //findbyid method? filtering methods?
+    PostDto getPostById(Long id);
+
 
 }
