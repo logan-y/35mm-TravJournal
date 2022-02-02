@@ -19,12 +19,7 @@ public class FilmType {
     private String brand;
 
 
-
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name="post_filmTypes",
-            joinColumns = {@JoinColumn(name="filmTypeId", referencedColumnName = "id")},
-    inverseJoinColumns = {
-            @JoinColumn(name = "post_id", referencedColumnName = "id")})
+    @ManyToMany(mappedBy = "filmTypes")
     @EqualsAndHashCode.Exclude //check out docs
     private List<Post> posts;
 

@@ -24,13 +24,20 @@ public class Post {
     @Column(columnDefinition="TEXT")
     private String notes;
 
-    @ManyToMany(mappedBy = "posts")
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name="post_filmTypes",
+            joinColumns = {@JoinColumn(name="filmTypeId", referencedColumnName = "id")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "post_id", referencedColumnName = "id")})
     @EqualsAndHashCode.Exclude
     private Set<FilmType> filmTypes;
 
     @ManyToOne
     private Address address;
 
+    public void addFilmType (FilmType filmType){
+        this.filmTypes.add(filmType);
+    }
 
 
 }

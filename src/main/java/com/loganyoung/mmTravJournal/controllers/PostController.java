@@ -1,7 +1,9 @@
 package com.loganyoung.mmTravJournal.controllers;
 
+import com.loganyoung.mmTravJournal.entities.FilmType;
 import com.loganyoung.mmTravJournal.entities.Post;
 import com.loganyoung.mmTravJournal.model.PostDto;
+import com.loganyoung.mmTravJournal.repositories.FilmTypeRepository;
 import com.loganyoung.mmTravJournal.services.PostService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -17,6 +20,7 @@ import java.util.Optional;
 @AllArgsConstructor(onConstructor = @__({@Autowired}))
 public class PostController {
 
+    private final FilmTypeRepository filmTypeRepository;
     public final PostService postService;
 
     @GetMapping("/posts")
@@ -27,6 +31,7 @@ public class PostController {
 
     @PostMapping("/posts")
     public String createNewPost(@ModelAttribute PostDto newPost, Model model) {
+//        System.out.println(filmTypes);
         postService.createPost(newPost);
         clearModel(model);
         return "posts";
@@ -57,6 +62,8 @@ public class PostController {
         model.addAttribute("posts", postService.findAllPosts());
         model.addAttribute("newPost", new PostDto());
         model.addAttribute("updatedPost", new PostDto());
+        List<FilmType> filmTypes = filmTypeRepository.findAll();
+        model.addAttribute("filmTypes", filmTypes);
     }
 
 

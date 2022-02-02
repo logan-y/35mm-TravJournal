@@ -1,9 +1,11 @@
 package com.loganyoung.mmTravJournal.services;
 
 import com.loganyoung.mmTravJournal.entities.Address;
+import com.loganyoung.mmTravJournal.entities.FilmType;
 import com.loganyoung.mmTravJournal.entities.Post;
 import com.loganyoung.mmTravJournal.model.PostDto;
 import com.loganyoung.mmTravJournal.repositories.AddressRepository;
+import com.loganyoung.mmTravJournal.repositories.FilmTypeRepository;
 import com.loganyoung.mmTravJournal.repositories.PostRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +22,7 @@ public class PostServiceImpl implements PostService{
 
     private final PostRepository postRepository;
     private final AddressRepository addressRepository;
+//    private final FilmTypeRepository filmTypeRepository;
 
     @Override
     public List<PostDto> findAllPosts() {
@@ -33,6 +36,7 @@ public class PostServiceImpl implements PostService{
         post.setTitle(postDto.getTitle());
         post.setNotes(postDto.getNotes());
         post.setCreationDate(postDto.getDate());
+        post.setFilmTypes(postDto.getFilmTypes());
         foundAddress.ifPresent(post::setAddress);
         return new PostDto(postRepository.save(post));
 

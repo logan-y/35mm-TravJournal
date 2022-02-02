@@ -26,6 +26,16 @@
             <option value="5">Seattle, Washington</option>
         </select>
     </p>
+    <p>Film Types:
+        <div class="col-sm-8">
+            <th:block th:each="filmType : ${filmTypes}">
+                <div>
+                <input type="checkbox" th:field="*{filmTypes}" th:text="${filmType.name}"
+                th:value="${filmType.id}" />
+                </div>
+            </th:block>
+        </div>
+    </p>
     <p>
         <button class="btn btn-info" type="submit" value="Submit" th:text="Submit"></button>
     </p>
