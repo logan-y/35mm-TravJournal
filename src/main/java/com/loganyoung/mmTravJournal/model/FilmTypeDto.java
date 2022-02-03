@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 public class FilmTypeDto {
     private Long id;
     private String name;
-
-    private String brand;
     private Long speed;
 
     public FilmTypeDto(FilmType filmType) {

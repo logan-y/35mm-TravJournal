@@ -22,9 +22,9 @@ public class Post {
     private Date creationDate;
 
     @Column(columnDefinition="TEXT")
-    private String notes;
+    private String body;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     @JoinTable(name="post_filmTypes",
             joinColumns = {@JoinColumn(name="filmTypeId", referencedColumnName = "id")},
             inverseJoinColumns = {

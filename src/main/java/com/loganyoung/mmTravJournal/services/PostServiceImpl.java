@@ -22,7 +22,7 @@ public class PostServiceImpl implements PostService{
 
     private final PostRepository postRepository;
     private final AddressRepository addressRepository;
-//    private final FilmTypeRepository filmTypeRepository;
+
 
     @Override
     public List<PostDto> findAllPosts() {
@@ -34,7 +34,7 @@ public class PostServiceImpl implements PostService{
         Post post = new Post();
         Optional<Address> foundAddress = addressRepository.findById(postDto.getAddress().getId());
         post.setTitle(postDto.getTitle());
-        post.setNotes(postDto.getNotes());
+        post.setBody(postDto.getBody());
         post.setCreationDate(postDto.getDate());
         post.setFilmTypes(postDto.getFilmTypes());
         foundAddress.ifPresent(post::setAddress);
@@ -53,7 +53,7 @@ public class PostServiceImpl implements PostService{
         if(postOptional.isPresent()){
         Post post = postOptional.get();
         post.setCreationDate(postDto.getDate());
-        post.setNotes(postDto.getNotes());
+        post.setTitle(postDto.getTitle());
         return Optional.of(new PostDto(postRepository.save(post)));
         }
         return Optional.empty();

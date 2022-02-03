@@ -17,7 +17,7 @@ public class PostDto {
     private String title;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
-    private String notes;
+    private String body;
     private Address address;
     private Set<FilmType> filmTypes;
 
@@ -25,7 +25,7 @@ public class PostDto {
         this.id = post.getId();
         this.title = post.getTitle();
         this.date = post.getCreationDate();
-        this.notes = post.getNotes();
+        this.body = post.getBody();
         this.address = post.getAddress();
         this.filmTypes = post.getFilmTypes();
 

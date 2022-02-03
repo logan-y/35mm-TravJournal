@@ -5,7 +5,6 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
@@ -16,12 +15,14 @@ public class FilmType {
     private Long id;
     private String name;
     private Long speed;
-    private String brand;
 
 
     @ManyToMany(mappedBy = "filmTypes")
-    @EqualsAndHashCode.Exclude //check out docs
+    @EqualsAndHashCode.Exclude
     private List<Post> posts;
 
-
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

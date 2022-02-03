@@ -1,7 +1,6 @@
 package com.loganyoung.mmTravJournal.controllers;
 
 import com.loganyoung.mmTravJournal.entities.FilmType;
-import com.loganyoung.mmTravJournal.entities.Post;
 import com.loganyoung.mmTravJournal.model.PostDto;
 import com.loganyoung.mmTravJournal.repositories.FilmTypeRepository;
 import com.loganyoung.mmTravJournal.services.PostService;
@@ -11,9 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Controller //change to rest controller to serve up json that will be consumed via js
@@ -31,7 +30,6 @@ public class PostController {
 
     @PostMapping("/posts")
     public String createNewPost(@ModelAttribute PostDto newPost, Model model) {
-//        System.out.println(filmTypes);
         postService.createPost(newPost);
         clearModel(model);
         return "posts";
